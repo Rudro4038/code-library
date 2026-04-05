@@ -140,3 +140,4 @@ int32_t main() {
   return 0;
 }
 // https://codeforces.com/contest/1767/problem/F
+// https://vjudge.net/problem/Gym-101138D
