@@ -26,6 +26,23 @@ struct Trie {
       cur -> sz++;
     }
   }
+  void remove(int val) { // delete by value, don't remove more then inserted
+    node* cur = root;
+    cur->sz--; 
+    for (int i = B - 1; i >= 0; i--) {
+      int b = (val >> i) & 1;
+      node* nxtNode = cur->nxt[b];
+      if (!nxtNode) return; 
+      nxtNode->sz--;
+      if (nxtNode->sz == 0) {
+          delete nxtNode;
+          cur->nxt[b] = NULL;
+          return; 
+      }
+      cur = nxtNode;
+    }
+  }
+
   int query(int x, int k) { // number of values s.t. val ^ x < k
     node* cur = root;
     int ans = 0;
@@ -64,6 +81,8 @@ struct Trie {
     delete(cur);
   }
 } t;
+
+
 int32_t main() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
